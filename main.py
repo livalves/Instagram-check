@@ -1,4 +1,4 @@
-import json
+import  os, json
 from datetime import datetime
 
 with open('followers_and_following/followers_1.json', 'r') as file:
@@ -36,6 +36,9 @@ nao_seguem_de_volta = seguindo_set - seguidores_set
 
 data_atual = datetime.now().strftime("%d-%m-%Y")
 filename = f'output/nao-seguidores_{data_atual}'
+
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+
 with open(filename, 'w') as file:
     for i, usuario in enumerate(nao_seguem_de_volta, start=1):  
         file.write(f"{i}. {usuario}\n")
